@@ -1,0 +1,8 @@
+<h1>Timezones</h1>
+<app-timezone #first (activityChange)="setSecondTimezoneSettingsEnabled($event)"></app-timezone>
+<br>
+<br>
+<app-timezone #second (activityChange)="setFirstTimezoneSettingsEnabled($event)"></app-timezone>
+<br>
+<br>
+<span>Your current timezone is <b>{{getCurrentTimezone()}}</b></span>

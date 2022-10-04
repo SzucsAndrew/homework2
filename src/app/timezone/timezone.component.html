@@ -1,0 +1,13 @@
+<span>Current timezone:</span>
+<select (change)="updateTimer()" [disabled]="isDisabled" [(ngModel)]="selectedTimezone">
+    <option *ngFor="let time of worldTimezones;" [value]="time">{{time}}</option>
+</select>
+<br>
+<span>Locale:</span>
+<select (change)="updateTimer()" [disabled]="isDisabled" [(ngModel)]="selectedLocale" >
+    <option *ngFor="let local of locales;" [value]="local.locale">{{local.description}}</option>
+</select>
+<br>
+<span>{{currentDatetime}}</span>
+<br>
+<button [disabled]="isDisabled" (click)="setSettingsDisabled()">Set Active</button>
