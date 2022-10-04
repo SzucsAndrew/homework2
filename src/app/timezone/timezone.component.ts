@@ -19,15 +19,17 @@ export class TimezoneComponent implements OnInit {
   locales : Array<Locale>;
   timerSubscription?: Subscription;
   interval : Observable<number>;
+  currentTimezone : string;
 
   constructor(private timezonesService : TimezonesService) { 
-    this.currentDatetime = "Please choose and/or set Active";
+    this.currentDatetime = "Please choose and/or set current";
     this.worldTimezones = timezonesService.world_timezones();
     this.locales = timezonesService.locales();
+    this.currentTimezone = timezonesService.getCurrentTimeZone();
 
     this.selectedLocale = this.locales[0].locale;
     this.selectedTimezone = this.worldTimezones[0];
-
+    
     this.interval = interval(1000);
   }
 
@@ -59,6 +61,10 @@ export class TimezoneComponent implements OnInit {
     this.isDisabled = true;
     this.startTimer();
     this.activityChange.emit(false);
+  }
+
+  isCurrentLocation() : boolean{
+    return this.currentTimezone  === this.selectedTimezone;
   }
 
   ngOnDestroy(): void {
